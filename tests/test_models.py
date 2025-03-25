@@ -53,6 +53,19 @@ def test_daily_max_integers():
 import pytest
 from inflammation.models import daily_min
 ...
+
+from inflammation.models import daily_max
+@pytest.mark.parametrize(
+    "test, expected",
+    [
+        ([ [0,0], [0,1], [2,3] ], [0,0]),
+        ([ [1,1], [2,2], [3,3] ], [1,1]),
+    ]
+)
+def test_daily_min(test, expected):
+    """Test that min function works for an array of positive integers."""
+    npt.assert_array_equal(daily_min(np.array(test)), np.array(expected))
+
 def test_daily_min_string():
     """Test for TypeError when passing strings"""
 
